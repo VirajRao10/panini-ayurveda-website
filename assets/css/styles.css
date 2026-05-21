@@ -350,8 +350,9 @@ p {
 
 .home-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
-  gap: 0;
+  grid-template-columns: minmax(0, 1.95fr) minmax(320px, 1fr);
+  column-gap: 20px;
+  row-gap: 0;
   align-items: start;
   width: 100%;
   min-height: 595px;
