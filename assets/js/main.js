@@ -6,6 +6,10 @@
     navToggle.addEventListener("click", () => {
       const isOpen = document.body.classList.toggle("nav-open");
       navToggle.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen && languageMenu) {
+        languageMenu.classList.remove("open");
+        languageMenu.querySelector(".language-pill")?.setAttribute("aria-expanded", "false");
+      }
     });
 
     nav.addEventListener("click", (event) => {
@@ -15,6 +19,45 @@
       }
     });
   }
+
+  const languageMenu = document.querySelector("[data-language-menu]");
+  const translateLink = document.querySelector("[data-translate-link]");
+  if (translateLink) {
+    translateLink.href = `https://translate.google.com/translate?sl=en&tl=nl&u=${encodeURIComponent(window.location.href)}`;
+  }
+  if (languageMenu) {
+    const button = languageMenu.querySelector(".language-pill");
+    const closeLanguageMenu = () => {
+      languageMenu.classList.remove("open");
+      button?.setAttribute("aria-expanded", "false");
+    };
+
+    button?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isOpen = languageMenu.classList.toggle("open");
+      button.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen) {
+        document.body.classList.remove("nav-open");
+        navToggle?.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!languageMenu.contains(event.target)) closeLanguageMenu();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeLanguageMenu();
+    });
+  }
+
+  const shareText = encodeURIComponent(`I wanted to share this great website with you ${window.location.href}`);
+  document.querySelectorAll("[data-share-whatsapp]").forEach((link) => {
+    link.href = `https://api.whatsapp.com/send?text=${shareText}`;
+  });
+  document.querySelectorAll("[data-share-email]").forEach((link) => {
+    link.href = `mailto:?subject=I wanted to share this great website with you&body=${shareText}`;
+  });
 
   const year = document.querySelector("[data-year]");
   if (year) {
@@ -58,28 +101,39 @@
     lightbox.setAttribute("aria-label", "Gallery image preview");
     lightbox.innerHTML = `
       <button class="lightbox-close" type="button" aria-label="Close gallery preview">&times;</button>
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">&lsaquo;</button>
       <figure>
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="">
         <figcaption></figcaption>
       </figure>
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">&rsaquo;</button>
     `;
     document.body.appendChild(lightbox);
 
     const lightboxImage = lightbox.querySelector("img");
     const caption = lightbox.querySelector("figcaption");
     const closeButton = lightbox.querySelector(".lightbox-close");
+    const previousButton = lightbox.querySelector(".lightbox-prev");
+    const nextButton = lightbox.querySelector(".lightbox-next");
+    let activeIndex = 0;
+
+    const showImage = (index) => {
+      activeIndex = (index + galleryItems.length) % galleryItems.length;
+      const button = galleryItems[activeIndex];
+      const image = button.querySelector("img");
+      lightboxImage.src = button.dataset.full || image.src;
+      lightboxImage.alt = image.alt;
+      caption.textContent = `${button.dataset.caption || image.alt} (${activeIndex + 1} / ${galleryItems.length})`;
+    };
 
     const close = () => {
       lightbox.classList.remove("open");
       document.body.style.overflow = "";
     };
 
-    galleryItems.forEach((button) => {
+    galleryItems.forEach((button, index) => {
       button.addEventListener("click", () => {
-        const image = button.querySelector("img");
-        lightboxImage.src = button.dataset.full || image.src;
-        lightboxImage.alt = image.alt;
-        caption.textContent = button.dataset.caption || image.alt;
+        showImage(index);
         lightbox.classList.add("open");
         document.body.style.overflow = "hidden";
         closeButton.focus();
@@ -87,12 +141,20 @@
     });
 
     closeButton.addEventListener("click", close);
+    previousButton.addEventListener("click", () => showImage(activeIndex - 1));
+    nextButton.addEventListener("click", () => showImage(activeIndex + 1));
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) close();
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && lightbox.classList.contains("open")) {
         close();
+      }
+      if (event.key === "ArrowLeft" && lightbox.classList.contains("open")) {
+        showImage(activeIndex - 1);
+      }
+      if (event.key === "ArrowRight" && lightbox.classList.contains("open")) {
+        showImage(activeIndex + 1);
       }
     });
   }
