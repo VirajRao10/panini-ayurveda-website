@@ -24,14 +24,30 @@
   const search = document.querySelector("[data-article-search]");
   const articleCards = Array.from(document.querySelectorAll("[data-search]"));
   if (search && articleCards.length) {
+    const articleGrid = articleCards[0].parentElement;
+    const noResults = document.createElement("p");
+    noResults.className = "search-empty";
+    noResults.hidden = true;
+    noResults.setAttribute("aria-live", "polite");
+    noResults.textContent = "No articles found.";
+    articleGrid.after(noResults);
+
     search.addEventListener("input", () => {
       const query = search.value.trim().toLowerCase();
       articleCards.forEach((card) => {
         const haystack = card.dataset.search || "";
         card.hidden = query.length > 0 && !haystack.includes(query);
       });
+      noResults.hidden = query.length === 0 || articleCards.some((card) => !card.hidden);
     });
   }
+
+  document.querySelectorAll("img").forEach((image) => {
+    image.decoding = "async";
+    if (!image.hasAttribute("loading") && !image.closest(".site-header") && !image.classList.contains("home-hero-image")) {
+      image.loading = "lazy";
+    }
+  });
 
   const galleryItems = Array.from(document.querySelectorAll("[data-gallery-item]"));
   if (galleryItems.length) {
