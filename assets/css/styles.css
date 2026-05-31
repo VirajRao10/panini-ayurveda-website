@@ -96,9 +96,9 @@ textarea:focus-visible {
 }
 
 .site-header .wide-container {
-  width: 100%;
-  max-width: 1220px;
-  padding-inline: 20px;
+  width: min(100%, 1680px);
+  max-width: none;
+  padding-inline: clamp(20px, 2vw, 32px);
 }
 
 .section {
@@ -186,6 +186,7 @@ p {
   justify-content: flex-start;
   align-items: center;
   gap: 0;
+  min-width: 0;
   padding-top: 0;
 }
 
@@ -1487,7 +1488,7 @@ p {
   border: 0;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1360px) {
   .header-inner {
     grid-template-columns: minmax(175px, 215px) minmax(0, 1fr) auto;
     gap: 12px;
@@ -1526,7 +1527,7 @@ p {
   }
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1240px) {
   .nav-toggle {
     display: inline-flex;
   }
