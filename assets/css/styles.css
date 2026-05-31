@@ -1505,7 +1505,7 @@ p {
   }
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1120px) {
   .nav-toggle {
     display: inline-flex;
   }
