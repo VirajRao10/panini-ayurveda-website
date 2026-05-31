@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://virajrao10.github.io/panini-ayurveda-website/sitemap.xml

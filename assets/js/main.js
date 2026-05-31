@@ -3,6 +3,11 @@
   const nav = document.querySelector("#main-nav");
 
   if (navToggle && nav) {
+    const closeNav = () => {
+      document.body.classList.remove("nav-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    };
+
     navToggle.addEventListener("click", () => {
       const isOpen = document.body.classList.toggle("nav-open");
       navToggle.setAttribute("aria-expanded", String(isOpen));
@@ -14,9 +19,12 @@
 
     nav.addEventListener("click", (event) => {
       if (event.target.closest("a")) {
-        document.body.classList.remove("nav-open");
-        navToggle.setAttribute("aria-expanded", "false");
+        closeNav();
       }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeNav();
     });
   }
 
@@ -51,14 +59,6 @@
     });
   }
 
-  const shareText = encodeURIComponent(`I wanted to share this great website with you ${window.location.href}`);
-  document.querySelectorAll("[data-share-whatsapp]").forEach((link) => {
-    link.href = `https://api.whatsapp.com/send?text=${shareText}`;
-  });
-  document.querySelectorAll("[data-share-email]").forEach((link) => {
-    link.href = `mailto:?subject=I wanted to share this great website with you&body=${shareText}`;
-  });
-
   const year = document.querySelector("[data-year]");
   if (year) {
     year.textContent = new Date().getFullYear();
@@ -85,9 +85,32 @@
     });
   }
 
+  const appointmentForm = document.querySelector("[data-appointment-form]");
+  if (appointmentForm) {
+    appointmentForm.addEventListener("submit", (event) => {
+      if (!appointmentForm.checkValidity()) return;
+      event.preventDefault();
+
+      const formData = new FormData(appointmentForm);
+      const fields = [
+        ["Name", formData.get("name")],
+        ["E-mail", formData.get("email")],
+        ["Phone", formData.get("phone")],
+        ["Consultation type", formData.get("consultation_type")],
+        ["Preferred days or times", formData.get("preferred_times")],
+        ["Main reason for consultation", formData.get("message")],
+      ];
+      const body = fields
+        .map(([label, value]) => `${label}: ${value || ""}`)
+        .join("\n\n");
+
+      window.location.href = `mailto:panini.ayurvedics@gmail.com?subject=${encodeURIComponent("Consultation request")}&body=${encodeURIComponent(body)}`;
+    });
+  }
+
   document.querySelectorAll("img").forEach((image) => {
     image.decoding = "async";
-    if (!image.hasAttribute("loading") && !image.closest(".site-header") && !image.classList.contains("home-hero-image")) {
+    if (!image.hasAttribute("loading") && !image.closest(".site-header") && !image.closest(".home-hero") && !image.closest(".article-hero")) {
       image.loading = "lazy";
     }
   });
@@ -116,6 +139,7 @@
     const previousButton = lightbox.querySelector(".lightbox-prev");
     const nextButton = lightbox.querySelector(".lightbox-next");
     let activeIndex = 0;
+    let lastFocusedElement = null;
 
     const showImage = (index) => {
       activeIndex = (index + galleryItems.length) % galleryItems.length;
@@ -129,10 +153,12 @@
     const close = () => {
       lightbox.classList.remove("open");
       document.body.style.overflow = "";
+      lastFocusedElement?.focus();
     };
 
     galleryItems.forEach((button, index) => {
       button.addEventListener("click", () => {
+        lastFocusedElement = document.activeElement;
         showImage(index);
         lightbox.classList.add("open");
         document.body.style.overflow = "hidden";
@@ -155,6 +181,18 @@
       }
       if (event.key === "ArrowRight" && lightbox.classList.contains("open")) {
         showImage(activeIndex + 1);
+      }
+      if (event.key === "Tab" && lightbox.classList.contains("open")) {
+        const focusable = Array.from(lightbox.querySelectorAll("button"));
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     });
   }
