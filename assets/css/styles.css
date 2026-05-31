@@ -1356,6 +1356,19 @@ p {
   align-items: center;
 }
 
+.cert-logos a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 74px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.cert-logos a:focus-visible {
+  outline-color: rgba(255, 250, 242, 0.75);
+}
+
 .cert-logos img {
   max-height: 62px;
   width: auto;
@@ -1363,6 +1376,14 @@ p {
   padding: 6px;
   border-radius: 6px;
   background: var(--white);
+}
+
+.footer-registration {
+  margin-top: 18px;
+  color: rgba(255, 250, 242, 0.82);
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.6;
 }
 
 .footer-contact p {
