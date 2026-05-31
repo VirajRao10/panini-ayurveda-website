@@ -147,7 +147,9 @@
       const image = button.querySelector("img");
       lightboxImage.src = button.dataset.full || image.src;
       lightboxImage.alt = image.alt;
-      caption.textContent = `${button.dataset.caption || image.alt} (${activeIndex + 1} / ${galleryItems.length})`;
+      const captionText = button.dataset.caption?.trim();
+      caption.hidden = !captionText;
+      caption.textContent = captionText ? `${captionText} (${activeIndex + 1} / ${galleryItems.length})` : "";
     };
 
     const close = () => {
