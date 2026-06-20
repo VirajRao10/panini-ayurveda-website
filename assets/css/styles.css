@@ -1,3 +1,101 @@
+/* ─── Scroll reveal animations ─────────────────────────────────────── */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes revealRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes revealScale {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Stagger delays */
+.reveal-up    { animation: revealUp 0.65s cubic-bezier(.22,.68,0,1.2) both; }
+.reveal-left  { animation: revealLeft 0.65s cubic-bezier(.22,.68,0,1.2) both; }
+.reveal-right { animation: revealRight 0.65s cubic-bezier(.22,.68,0,1.2) both; }
+.reveal-scale { animation: revealScale 0.55s cubic-bezier(.22,.68,0,1.2) both; }
+.reveal-fade  { animation: fadeIn 0.55s ease both; }
+
+.reveal-up.delay-1,    .reveal-left.delay-1,  .reveal-right.delay-1  { animation-delay: 0.10s; }
+.reveal-up.delay-2,    .reveal-left.delay-2,  .reveal-right.delay-2  { animation-delay: 0.20s; }
+.reveal-up.delay-3,    .reveal-left.delay-3,  .reveal-right.delay-3  { animation-delay: 0.30s; }
+.reveal-up.delay-4,    .reveal-left.delay-4,  .reveal-right.delay-4  { animation-delay: 0.40s; }
+.reveal-up.delay-5,    .reveal-left.delay-5,  .reveal-right.delay-5  { animation-delay: 0.50s; }
+.reveal-up.delay-6,    .reveal-left.delay-6,  .reveal-right.delay-6  { animation-delay: 0.60s; }
+
+/* Initially hidden until JS adds .visible */
+.scroll-reveal {
+  opacity: 0;
+}
+
+/* Hero elements start visible so they animate in on load */
+.home-hero .reveal-up    { opacity: 1; }
+.home-hero .reveal-left  { opacity: 1; }
+.home-hero .reveal-right { opacity: 1; }
+
+/* Gallery items stagger in */
+.gallery-item.reveal-up { animation: revealScale 0.5s cubic-bezier(.22,.68,0,1.2) both; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--mist); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* Custom selection colour */
+::selection { background: rgba(83, 117, 1, 0.22); color: var(--ink); }
+
+/* Subtle header shrink on scroll */
+.site-header { transition: box-shadow 220ms ease, background 220ms ease; }
+
+/* Hero image parallax */
+.home-hero { will-change: transform; }
+
+/* Card hover lift */
+.info-card:hover,
+.faq-card:hover,
+.article-card:hover { transform: translateY(-4px); }
+
+/* Article CTA button full-width on mobile */
+.article-cta .button { min-width: 220px; }
+
+/* Consultation warm-card heading fix */
+.card.warm-card h3 {
+  color: var(--green-dark);
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+/* Hero practitioner portrait subtle glow */
+.hero-practitioner {
+  animation: revealRight 0.85s cubic-bezier(.22,.68,0,1.2) 0.2s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-fade,
+  .hero-practitioner, .gallery-item.reveal-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .scroll-reveal { opacity: 1; }
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Poppins:wght@400;500;600;700;800&display=swap");
 
 :root {
@@ -1654,6 +1752,11 @@ p {
   .conditions-grid,
   .condition-category-grid {
     grid-template-columns: 1fr;
+  }
+
+  .reveal-left,
+  .reveal-right {
+    animation-name: revealUp;
   }
 
   .gallery-grid {

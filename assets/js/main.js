@@ -115,6 +115,21 @@
     }
   });
 
+  // ── Scroll reveal ───────────────────────────────────────────────────────
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -48px 0px" }
+  );
+  document.querySelectorAll(".scroll-reveal").forEach((el) => revealObserver.observe(el));
+
+  // ── Gallery lightbox ─────────────────────────────────────────────────────
   const galleryItems = Array.from(document.querySelectorAll("[data-gallery-item]"));
   if (galleryItems.length) {
     const lightbox = document.createElement("div");
