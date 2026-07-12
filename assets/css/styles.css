@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Poppins:wght@400;500;600;700;800&display=swap");
+
 /* ─── Scroll reveal animations ─────────────────────────────────────── */
 @keyframes revealUp {
   from { opacity: 0; transform: translateY(36px); }
@@ -25,11 +27,14 @@
 }
 
 /* Stagger delays */
-.reveal-up    { animation: revealUp 0.65s cubic-bezier(.22,.68,0,1.2) both; }
-.reveal-left  { animation: revealLeft 0.65s cubic-bezier(.22,.68,0,1.2) both; }
-.reveal-right { animation: revealRight 0.65s cubic-bezier(.22,.68,0,1.2) both; }
-.reveal-scale { animation: revealScale 0.55s cubic-bezier(.22,.68,0,1.2) both; }
-.reveal-fade  { animation: fadeIn 0.55s ease both; }
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-scale,
+.reveal-fade {
+  opacity: 1;
+  transform: none;
+}
 
 .reveal-up.delay-1,    .reveal-left.delay-1,  .reveal-right.delay-1  { animation-delay: 0.10s; }
 .reveal-up.delay-2,    .reveal-left.delay-2,  .reveal-right.delay-2  { animation-delay: 0.20s; }
@@ -38,18 +43,18 @@
 .reveal-up.delay-5,    .reveal-left.delay-5,  .reveal-right.delay-5  { animation-delay: 0.50s; }
 .reveal-up.delay-6,    .reveal-left.delay-6,  .reveal-right.delay-6  { animation-delay: 0.60s; }
 
-/* Initially hidden until JS adds .visible */
 .scroll-reveal {
-  opacity: 0;
+  opacity: 1;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
 }
 
 /* Hero elements start visible so they animate in on load */
 .home-hero .reveal-up    { opacity: 1; }
 .home-hero .reveal-left  { opacity: 1; }
 .home-hero .reveal-right { opacity: 1; }
-
-/* Gallery items stagger in */
-.gallery-item.reveal-up { animation: revealScale 0.5s cubic-bezier(.22,.68,0,1.2) both; }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar { width: 8px; }
@@ -83,7 +88,7 @@
 
 /* Hero practitioner portrait subtle glow */
 .hero-practitioner {
-  animation: revealRight 0.85s cubic-bezier(.22,.68,0,1.2) 0.2s both;
+  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -95,8 +100,6 @@
   }
   .scroll-reveal { opacity: 1; }
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Poppins:wght@400;500;600;700;800&display=swap");
 
 :root {
   --apricot: #f6c982;
@@ -600,7 +603,12 @@ p {
 .centered-heading {
   text-align: center;
   max-width: 820px;
-  margin: 0 auto clamp(36px, 5vw, 64px);
+  margin: 0 auto clamp(28px, 4vw, 48px);
+}
+
+.intro-grid .centered-heading,
+.contact-hero .centered-heading {
+  margin-bottom: 0;
 }
 
 .green-band {
@@ -1703,6 +1711,9 @@ p {
     display: none;
   }
 
+}
+
+@media (max-width: 900px) {
   .home-hero-grid,
   .intro-grid,
   .two-column,
@@ -1714,29 +1725,19 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .footer-map-wrap {
-    justify-items: start;
-  }
-
-  .footer-map {
-    width: 100%;
-  }
-
-  .footer-map-link {
-    width: 100%;
-  }
-
   .home-hero-grid {
     min-height: 0;
-    padding: 56px 0 62px;
-  }
-
-  .hero-copy {
-    gap: 18px;
+    padding: 48px 0 54px;
   }
 
   .hero-copy {
     justify-items: start;
+  }
+
+  .hero-practitioner {
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    text-align: left;
   }
 
   .portrait {
@@ -1745,23 +1746,27 @@ p {
 
   .faq-grid,
   .quick-info-grid,
-  .consultation-cards,
   .article-grid,
   .contact-grid,
   .doc-grid,
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .consultation-cards,
   .conditions-grid,
   .condition-category-grid {
     grid-template-columns: 1fr;
   }
 
-  .reveal-left,
-  .reveal-right {
-    animation-name: revealUp;
+  .footer-map-wrap {
+    justify-items: start;
   }
 
-  .gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .footer-map {
+    width: 100%;
   }
+
 }
 
 @media (max-width: 620px) {
@@ -1852,6 +1857,14 @@ p {
   }
 
   .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-grid,
+  .quick-info-grid,
+  .article-grid,
+  .contact-grid,
+  .doc-grid {
     grid-template-columns: 1fr;
   }
 
