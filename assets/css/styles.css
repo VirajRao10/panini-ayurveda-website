@@ -1012,11 +1012,12 @@ p {
 
 .complaints-section {
   background: var(--white);
+  padding: clamp(30px, 4vw, 44px) 0;
 }
 
 .complaint-panel {
-  max-width: 840px;
-  padding: clamp(26px, 4vw, 42px);
+  max-width: 680px;
+  padding: clamp(18px, 2.4vw, 24px);
   border-left: 4px solid var(--green);
   border-radius: var(--radius);
   background: var(--mist);
@@ -1024,8 +1025,12 @@ p {
 }
 
 .complaint-panel h2 {
-  margin-bottom: 18px;
-  font-size: clamp(1.65rem, 2.6vw, 2.25rem);
+  margin-bottom: 10px;
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+}
+
+.complaint-panel p:last-child {
+  margin-bottom: 0;
 }
 
 .article-landing {
