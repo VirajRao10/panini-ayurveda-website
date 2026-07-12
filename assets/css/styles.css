@@ -204,11 +204,11 @@ textarea:focus-visible {
 }
 
 .section {
-  padding: clamp(44px, 5vw, 72px) 0;
+  padding: clamp(32px, 3vw, 44px) 0;
 }
 
 .section-tight {
-  padding: clamp(36px, 5vw, 72px) 0;
+  padding: clamp(28px, 3vw, 42px) 0;
 }
 
 .eyebrow {
@@ -503,16 +503,16 @@ p {
 .home-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(250px, 0.34fr);
-  gap: clamp(28px, 5vw, 68px);
+  gap: clamp(24px, 4vw, 52px);
   align-items: center;
-  min-height: clamp(430px, 44vw, 520px);
-  padding: clamp(38px, 5vw, 64px) 0;
+  min-height: clamp(400px, 38vw, 470px);
+  padding: clamp(32px, 4vw, 48px) 0;
 }
 
 .hero-copy {
   display: grid;
   justify-items: start;
-  gap: 18px;
+  gap: 14px;
   width: 100%;
   min-width: 0;
   max-width: 720px;
@@ -572,9 +572,9 @@ p {
 .hero-practitioner {
   display: grid;
   justify-items: center;
-  gap: 14px;
+  gap: 10px;
   min-width: 0;
-  padding: 22px 18px;
+  padding: 18px 16px;
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.08);
@@ -604,7 +604,7 @@ p {
 .centered-heading {
   text-align: center;
   max-width: 820px;
-  margin: 0 auto clamp(28px, 4vw, 48px);
+  margin: 0 auto clamp(22px, 3vw, 34px);
 }
 
 .intro-grid .centered-heading,
@@ -616,7 +616,7 @@ p {
   background: var(--green-dark);
   color: var(--white);
   text-align: center;
-  padding: clamp(46px, 5vw, 64px) 0;
+  padding: clamp(34px, 3.5vw, 46px) 0;
 }
 
 .green-band .eyebrow {
@@ -659,7 +659,7 @@ p {
 .contact-grid,
 .footer-grid {
   display: grid;
-  gap: clamp(24px, 4vw, 48px);
+  gap: clamp(22px, 3vw, 38px);
 }
 
 .intro-grid,
@@ -685,7 +685,7 @@ p {
 
 .copy-block p {
   font-size: 1rem;
-  line-height: 1.72;
+  line-height: 1.64;
 }
 
 .credential-list {
@@ -720,7 +720,7 @@ p {
 .info-panel,
 .info-card,
 .condition-category {
-  padding: clamp(22px, 3vw, 34px);
+  padding: clamp(20px, 2.2vw, 28px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
@@ -733,7 +733,7 @@ p {
 .gallery-grid,
 .doc-grid {
   display: grid;
-  gap: 24px;
+  gap: 18px;
 }
 
 .consultation-cards,
@@ -764,6 +764,11 @@ p {
   counter-reset: consult-step;
 }
 
+.consultation-cards .card {
+  padding: 22px;
+  font-size: 0.94rem;
+}
+
 .consultation-cards .warm-card {
   position: relative;
 }
@@ -785,7 +790,7 @@ p {
 }
 
 .highlight-band.consultation-card-section {
-  padding: 28px 0 clamp(60px, 7vw, 86px);
+  padding: 24px 0 clamp(38px, 4vw, 52px);
   background: var(--mist);
 }
 
@@ -800,7 +805,7 @@ p {
 
 .section-heading {
   max-width: 720px;
-  margin: 0 0 clamp(24px, 4vw, 40px);
+  margin: 0 0 clamp(20px, 2.5vw, 30px);
 }
 
 .section-heading h2 {
@@ -849,7 +854,7 @@ p {
 .faq-card,
 .contact-card,
 .doc-card {
-  padding: clamp(22px, 3vw, 36px);
+  padding: clamp(20px, 2.2vw, 28px);
 }
 
 .warm-card {
@@ -919,7 +924,7 @@ p {
 .faq-section .faq-card {
   border-color: transparent;
   background: var(--cream);
-  padding: clamp(22px, 3vw, 30px);
+  padding: clamp(18px, 2vw, 24px);
   text-align: left;
 }
 
@@ -983,7 +988,7 @@ p {
 
 .women-care-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px 36px;
   padding: 0;
   list-style: none;
@@ -1012,12 +1017,12 @@ p {
 
 .complaints-section {
   background: var(--white);
-  padding: clamp(30px, 4vw, 44px) 0;
+  padding: 24px 0;
 }
 
 .complaint-panel {
   max-width: 680px;
-  padding: clamp(18px, 2.4vw, 24px);
+  padding: 20px;
   border-left: 4px solid var(--green);
   border-radius: var(--radius);
   background: var(--mist);
@@ -1033,9 +1038,14 @@ p {
   margin-bottom: 0;
 }
 
+.complaint-panel p:not(.eyebrow) {
+  font-size: 0.92rem;
+  line-height: 1.52;
+}
+
 .article-landing {
   background: var(--mist);
-  padding: clamp(50px, 7vw, 70px) 0;
+  padding: clamp(36px, 4vw, 50px) 0;
   text-align: center;
 }
 
@@ -1148,14 +1158,14 @@ p {
 .article-hero {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(28px, 5vw, 64px);
+  gap: clamp(24px, 4vw, 48px);
   align-items: center;
-  padding: clamp(46px, 6vw, 78px) 0;
+  padding: clamp(32px, 4vw, 48px) 0;
 }
 
 .article-hero img {
   width: 100%;
-  height: clamp(260px, 34vw, 420px);
+  height: clamp(240px, 29vw, 350px);
   aspect-ratio: 1.35;
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
@@ -1172,24 +1182,24 @@ p {
   color: #2f352c;
   font-family: "Lora", Georgia, serif;
   font-size: 1.05rem;
-  line-height: 1.78;
+  line-height: 1.68;
 }
 
 .rich-text h2 {
-  margin: 2.2rem 0 1rem;
+  margin: 1.7rem 0 0.75rem;
   color: var(--green-dark);
   font-family: "Poppins", Arial, sans-serif;
   font-size: clamp(1.55rem, 3vw, 2.35rem);
 }
 
 .rich-text h3 {
-  margin: 1.8rem 0 0.75rem;
+  margin: 1.35rem 0 0.6rem;
   color: var(--green-dark);
   font-family: "Poppins", Arial, sans-serif;
 }
 
 .rich-text p {
-  margin-bottom: 1.05rem;
+  margin-bottom: 0.82rem;
 }
 
 .article-cta {
@@ -1351,7 +1361,7 @@ p {
 .appointment-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1.18fr);
-  gap: clamp(28px, 5vw, 64px);
+  gap: clamp(24px, 4vw, 46px);
   align-items: start;
 }
 
@@ -1361,11 +1371,11 @@ p {
 }
 
 .appointment-notes {
-  margin-top: 22px;
+  margin-top: 16px;
 }
 
 .appointment-form {
-  padding: clamp(22px, 3vw, 34px);
+  padding: clamp(20px, 2.4vw, 28px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--mist);
@@ -1375,7 +1385,7 @@ p {
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 
 .form-grid label,
@@ -1432,7 +1442,7 @@ p {
 
 .contact-hero {
   background: var(--mist);
-  padding: clamp(50px, 6vw, 74px) 0 clamp(34px, 4vw, 46px);
+  padding: clamp(34px, 4vw, 48px) 0 clamp(28px, 3vw, 36px);
   text-align: center;
 }
 
@@ -1483,7 +1493,7 @@ p {
 
 .map-frame {
   width: 100%;
-  min-height: 420px;
+  min-height: 340px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #edf0ee;
@@ -1501,7 +1511,7 @@ p {
 
 .about-hero {
   position: relative;
-  min-height: clamp(380px, 48vw, 560px);
+  min-height: clamp(340px, 38vw, 460px);
   display: grid;
   align-items: end;
   color: var(--white);
@@ -1518,7 +1528,7 @@ p {
 
 .about-hero .container {
   position: relative;
-  padding-bottom: clamp(44px, 7vw, 88px);
+  padding-bottom: clamp(34px, 5vw, 58px);
 }
 
 .about-hero p {
@@ -1533,6 +1543,10 @@ p {
   font-family: "Lora", Georgia, serif;
 }
 
+.site-footer .section-tight {
+  padding: 22px 0 18px;
+}
+
 .site-footer h3,
 .site-footer .button,
 .site-footer .text-link {
@@ -1542,7 +1556,7 @@ p {
 .footer-replica {
   display: grid;
   grid-template-columns: minmax(260px, 1fr) minmax(220px, 0.8fr) minmax(320px, 0.95fr);
-  gap: clamp(28px, 5vw, 60px);
+  gap: clamp(24px, 3vw, 38px);
   align-items: start;
 }
 
@@ -1552,9 +1566,10 @@ p {
 }
 
 .footer-logo {
-  width: 118px;
-  padding: 8px;
-  margin-bottom: 24px;
+  width: 62px;
+  height: 62px;
+  padding: 5px;
+  margin-bottom: 8px;
   border-radius: var(--radius);
   background: var(--cream);
 }
@@ -1562,7 +1577,7 @@ p {
 .cert-logos {
   display: grid;
   grid-template-columns: repeat(3, minmax(70px, 1fr));
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -1570,7 +1585,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 74px;
+  min-height: 40px;
   border-radius: 6px;
   text-decoration: none;
 }
@@ -1580,24 +1595,24 @@ p {
 }
 
 .cert-logos img {
-  max-height: 62px;
+  max-height: 34px;
   width: auto;
   margin: 0 auto;
-  padding: 6px;
+  padding: 4px;
   border-radius: 6px;
   background: var(--white);
 }
 
 .footer-registration {
-  margin-top: 18px;
+  margin: 8px 0 0;
   color: rgba(255, 250, 242, 0.82);
   font-family: "Poppins", Arial, sans-serif;
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.72rem;
+  line-height: 1.35;
 }
 
 .footer-contact p {
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.8rem;
 }
 
 .footer-contact a {
@@ -1608,8 +1623,8 @@ p {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 10px;
+  margin-top: 12px;
   font-family: "Poppins", Arial, sans-serif;
 }
 
@@ -1628,13 +1643,13 @@ p {
 .footer-map-wrap {
   display: grid;
   justify-items: end;
-  gap: 14px;
+  gap: 10px;
 }
 
 .footer-map,
 .footer-map-link {
   width: min(100%, 360px);
-  height: 170px;
+  height: 120px;
 }
 
 .footer-map {
@@ -1669,19 +1684,20 @@ p {
 }
 
 .footer-brochure {
-  min-height: 40px;
-  padding: 9px 22px;
-  font-size: 0.9rem;
+  min-height: 36px;
+  padding: 7px 18px;
+  font-size: 0.84rem;
 }
 
 .footer-note {
-  margin-top: 20px;
+  margin: 8px 0 0;
   color: rgba(255, 250, 242, 0.72);
-  font-size: 0.88rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
 }
 
 .footer-bottom {
-  padding: 20px 0 34px;
+  padding: 10px 0 14px;
   color: rgba(255, 250, 242, 0.72);
   font-size: 0.86rem;
 }
@@ -1823,14 +1839,13 @@ p {
   .article-hero,
   .article-cta-inner,
   .appointment-layout,
-  .footer-grid,
-  .footer-replica {
+  .footer-grid {
     grid-template-columns: 1fr;
   }
 
   .home-hero-grid {
     min-height: 0;
-    padding: 48px 0 54px;
+    padding: 36px 0 40px;
   }
 
   .hero-copy {
@@ -1870,7 +1885,7 @@ p {
   }
 
   .women-care-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .footer-map-wrap {
@@ -1879,6 +1894,17 @@ p {
 
   .footer-map {
     width: 100%;
+  }
+
+  .footer-replica {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .footer-map-wrap {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
   }
 
 }
@@ -1920,7 +1946,7 @@ p {
   }
 
   .green-band {
-    padding: 46px 0;
+    padding: 32px 0;
   }
 
   .home-hero {
@@ -1932,7 +1958,7 @@ p {
   .home-hero-grid {
     width: calc(100vw - 28px);
     max-width: calc(100vw - 28px);
-    padding: 38px 0 46px;
+    padding: 30px 0 36px;
   }
 
   .hero-copy,
@@ -1975,7 +2001,7 @@ p {
   }
 
   .map-frame {
-    min-height: 320px;
+    min-height: 280px;
   }
 
   .faq-grid,
@@ -1984,6 +2010,24 @@ p {
   .contact-grid,
   .doc-grid {
     grid-template-columns: 1fr;
+  }
+
+  .women-care-list {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-replica {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-map-wrap {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .footer-map {
+    height: 120px;
   }
 
   .article-landing h1 {
